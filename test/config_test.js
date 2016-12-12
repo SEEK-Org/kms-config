@@ -50,21 +50,6 @@ describe('config', () => {
             targetModule().should.eventually.be.rejected
         );
 
-        it('should only parse config once, successive calls return the cached config', () => {
-            // The main purpose of this behaviour is to
-            // avoid lots of KMS calls which are slow and expensive.
-            let originalConfig
-            return configureSuccess().then((conf) => {
-                originalConfig = conf;
-                // get the target again!
-                // this time it should return the same config
-                return targetModule(rawConf);
-            }).then((subsequentConfig) => {
-                kmsDecryptStub.calledOnce.should.be.true;
-                originalConfig.should.eql(subsequentConfig);
-            });
-        });
-
         let configureSuccess = () => {
             rawConf.kms = { stripeAuApiKey : 'olleh' };
             //KMS decrypts succesfully

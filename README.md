@@ -1,14 +1,43 @@
-# Node Lambda Tools (TODO need a better name!)
+<a name="module_config"></a>
 
-We were finding ourselves duplicating lots of code snippets between aws lambda projects. This repo is a bucket (or [monorepo](https://github.com/babel/babel/blob/master/doc/design/monorepo.md)) for a bunch of tiny npm modules which can be included in lambda projects. They are intended to be as small as possible and only need to be runnable in the Node 4 AWS [lambda runtime](http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html).
+## config ⇒ <code>Promise</code>
+Decrypt [KMS](https://aws.amazon.com/kms/) encrypted values saved in config files.
 
-We're currently experimenting with [lerna](https://github.com/lerna/lerna) to manage and publish these modules. They are going to the seek internal repo for now so you'll need to set your project's `.npmrc` accordingly
-
+### Install
 ```
-cat "registry=http://npmregistryinternal.seekinfra.com:4873" > .npmrc
+npm install --save @seek/kms-config
 ```
 
-## Modules
+### Usage
+The user that is running the lambda will need `kms:Decrypt` permission to the master key used for generating the ciphertext.
+Warning*: To reduce KMS overhead you should just call this once and case the result if possible.
 
-- [Logger](./packages/node-lambda-tools-logger)
-- [Config](./packages/node-lambda-tools-config)
+#### myConfig.json
+```javascript
+{
+    "foo" : "bar",
+    "kms" {
+        "secretToHappiness" : "base64_encoded_ciphertext"
+    }
+}
+```
+#### handler.js
+```javascript
+const myConfig = require('./myConfig')
+const config  = require('@seek/kms-config')(myConfig)
+
+config.then(resolved => {
+    console.log(resolved.foo) // "bar"
+    console.log(resolved.kms.secretToHappiness) // "eat more chocolate"
+}).catch(err => {
+    console.log(err, "Oh dear perhaps you are missing KMS permissions")
+})
+...
+```
+
+**Returns**: <code>Promise</code> - A promise to the loaded config which will be resolved with all kms values decrypted.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| config | <code>Object</code> | A config object which may contain a child `kms` object who's values are KMS ciphertext |
+

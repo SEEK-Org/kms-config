@@ -1,27 +1,44 @@
 {
-  "name": "node-lambda-tools",
-  "url": "git+https://github.com/SEEK-Jobs/node-lambda-tools.git",
-  "homepage": "https://github.com/SEEK-Jobs/node-lambda-tools",
+  "name": "@seek/kms-config",
+  "version": "0.1.2",
+  "description": "Decrypt KMS encrypted values saved in config files",
+  "main": "index.js",
+  "engines": {
+    "node": "4.3.2"
+  },
+  "scripts": {
+    "doc": "jsdoc2md config.js > readme.md",
+    "build": "babel config.js --presets babili --no-comments --out-file index.js",
+    "prepublish": "npm run build && npm run doc",
+    "lint": "eslint ./",
+    "fix": "eslint fix ./",
+    "test": "mocha --opts mocha.opts",
+    "test:watch": "mocha --opts mocha.opts --watch"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SEEK-Jobs/node-lambda-tools.git"
+    "url": "git+https://github.com/SEEK-Jobs/kms-config.git"
   },
+  "contributors": [
+    "Jack Jordan",
+    "Jack Grigg"
+  ],
   "license": "UNLICENSED",
+  "homepage": "https://github.com/SEEK-Jobs/kms-config/tree/master/packages/kms-config",
   "devDependencies": {
+    "aws-sdk": "^2.7.6",
     "babel-cli": "^6.18.0",
     "babel-preset-babili": "0.0.8",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
-    "eslint": "^3.9.1",
-    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb-base": "^11.0.0",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-promise": "^3.3.1",
+    "eslint-plugin-promise": "^3.4.0",
     "jsdoc": "^3.4.3",
     "jsdoc-to-markdown": "^2.0.1",
-    "lerna": "2.0.0-beta.30",
-    "mocha": "^3.1.2",
+    "mocha": "^3.2.0",
     "proxyquire": "^1.7.10",
-    "sinon": "^1.17.6",
-    "sinon-chai": "^2.8.0"
+    "sinon": "^1.17.6"
   }
 }
