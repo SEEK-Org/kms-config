@@ -1,7 +1,7 @@
 {
   "name": "@seek/kms-config",
   "version": "0.1.2",
-  "description": "Decrypt KMS encrypted values saved in config files",
+  "description": "Decrypt KMS encrypted values in config files",
   "main": "index.js",
   "engines": {
     "node": "4.3.2"
