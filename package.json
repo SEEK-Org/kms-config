@@ -1,6 +1,6 @@
 {
   "name": "@seek/kms-config",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Decrypt KMS encrypted values in config files",
   "main": "index.js",
   "private": false,
@@ -18,14 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SEEK-Jobs/kms-config.git"
+    "url": "git+https://github.com/SEEK-Org/kms-config.git"
   },
   "contributors": [
     "Jack Jordan",
     "Jack Grigg"
   ],
   "license": "UNLICENSED",
-  "homepage": "https://github.com/SEEK-Jobs/kms-config/tree/master/packages/kms-config",
+  "homepage": "https://github.com/SEEK-Org/kms-config/tree/master/packages/kms-config",
   "devDependencies": {
     "aws-sdk": "^2.7.6",
     "babel-cli": "^6.18.0",
