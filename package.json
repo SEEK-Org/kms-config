@@ -1,11 +1,11 @@
 {
   "name": "@seek/kms-config",
-  "version": "0.1.4",
+  "version": "1.0.0",
   "description": "Decrypt KMS encrypted values in config files",
   "main": "index.js",
   "private": false,
   "engines": {
-    "node": "4.3.2"
+    "node": ">=4"
   },
   "scripts": {
     "doc": "jsdoc2md config.js > readme.md",
@@ -18,16 +18,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SEEK-Org/kms-config.git"
+    "url": "git+https://github.com/seek-oss/kms-config.git"
   },
   "contributors": [
     "Jack Jordan",
     "Jack Grigg"
   ],
-  "license": "UNLICENSED",
-  "homepage": "https://github.com/SEEK-Org/kms-config/tree/master/packages/kms-config",
+  "license": "MIT",
+  "homepage": "https://github.com/seek-oss/kms-config/tree/master/packages/kms-config",
   "devDependencies": {
-    "aws-sdk": "^2.7.6",
     "babel-cli": "^6.18.0",
     "babel-preset-babili": "0.0.8",
     "chai": "^3.5.0",
@@ -41,5 +40,8 @@
     "mocha": "^3.2.0",
     "proxyquire": "^1.7.10",
     "sinon": "^1.17.6"
+  },
+  "peerDependencies": {
+    "aws-sdk": "^2.7.6"
   }
 }
