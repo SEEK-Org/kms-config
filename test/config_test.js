@@ -41,7 +41,7 @@ describe('config', () => {
             kmsDecryptStub
                 .withArgs({ CiphertextBlob: sinon.match.instanceOf(Buffer) }, sinon.match.func)
                 //Call the KMS callback with an error
-                .callsArgWith(2, { stack : 'bogus' });
+                .callsArgWith(1, { stack : 'bogus' }, null);
 
             return targetModule(rawConf).should.eventually.be.rejected
         });
